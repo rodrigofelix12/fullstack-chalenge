@@ -2,17 +2,18 @@ package com.example.task_list_api.service.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.task_list_api.entities.Task;
 import com.example.task_list_api.repository.TaskRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class TaskService {
     
-    @Autowired
-    private TaskRepository repository;
+    private final TaskRepository repository;
 
     public List<Task> getAllTasks(){
         return repository.findAll();

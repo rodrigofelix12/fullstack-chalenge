@@ -2,6 +2,8 @@ package com.example.task_list_api.entities;
 
 import java.time.LocalDateTime;
 
+import com.example.task_list_api.enums.StatusEnum;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,7 +25,7 @@ public class Task {
     private String title;
 
     @Column(nullable = false)
-    private String status;
+    private StatusEnum status;
     
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
