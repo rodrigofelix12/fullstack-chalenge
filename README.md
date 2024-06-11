@@ -4,7 +4,7 @@ Repository for Fullstack Test
 
 ## Requisits
 
-Before start, make sure you have the following tecnologies intallerd:
+Before start, make sure you have the following tecnologies intalled:
 ```
 Java 17
 PostgreSQL 13
@@ -15,6 +15,12 @@ NodeJs LTS
 ## Setting environmnent
 
 First you have to download the project in https://github.com/rodrigofelix12/fullstack-chalenge.git
+
+You can run the dockerfile of the application with the following command:
+
+```
+docker build -t task-list-api .
+```
 
 You can run the docker-compose.yml to create a new container of PostgreSQL, or just run the script.sql inside of project.
 
