@@ -1,30 +1,69 @@
 import { Component, OnInit } from '@angular/core';
+import { Task, TaskRequest, TaskService } from '../task.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [TaskListComponent],
+  imports: [TaskListComponent, CommonModule, FormsModule],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss']
 })
 export class TaskListComponent implements OnInit {
 
-  tasks: any[] = [
-    { id: 1, name: 'Task 1', description: 'Description of task 1' },
-    { id: 2, name: 'Task 2', description: 'Description of task 2' },
-    { id: 3, name: 'Task 3', description: 'Description of task 3' }
-  ];
+  public tasks: Task[] = [];
+  selectedTask: any = null;
 
-  constructor() { }
+  constructor(private taskService: TaskService) { }
 
   ngOnInit(): void {
+    this.loadTasks();
+  }
+
+  loadTasks(): void {
+    this.taskService.getAllTasks()
+    .subscribe({
+      next: (value) => {
+          this.tasks = value;
+      },
+      error: (err) => {
+          console.log("Error retrieving request")
+      },
+    });
   }
 
   editTask(task: any): void {
-    // Implementar a lógica de edição da tarefa
+    this.selectedTask = { ...task };
+  }
+
+  saveTask(title: string, status: string, id: number) {
+    const taskRequest = { title: title, status: status } as TaskRequest;
+    this.taskService.updateTask(taskRequest, id)
+    .subscribe({
+      next: () => {
+        this.loadTasks();
+        this.selectedTask = '';
+      },
+      error: (err) => {
+          console.log("Error retrieving request")
+      },
+    });
   }
 
   deleteTask(id: number): void {
-    // Implementar a lógica de exclusão da tarefa
+    this.taskService.deleteTask(id)
+    .subscribe({
+      next: () => {
+        this.loadTasks();
+      },
+      error: (err) => {
+          console.log("Error retrieving request")
+      },
+    });
+  }
+
+  cancelEdit(): void {
+    this.selectedTask = null;
   }
 }

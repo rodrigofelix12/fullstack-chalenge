@@ -3,9 +3,14 @@
     <form>
       <div class="form-group">
         <label for="name">Title:</label>
-        <input type="text" class="form-control" id="name" name="name" ngModel="taskName">
+        <input type="text" class="form-control" id="title" name="name" [(ngModel)]="title">
+        <label for="status">Status:</label>
+        <select class="form-control" id="status" name="status" [(ngModel)]="status">
+          <option value="PENDING">Pending</option>
+          <option value="COMPLETED">Completed</option>
+        </select>
       </div>
-      <button type="submit" class="btn btn-primary mt-3" (click)="addTask()">Add Task</button>
+      <button type="submit" class="btn btn-primary mt-3" (click)="addTask(title, status)">Add Task</button>
     </form>
   </div>
   
