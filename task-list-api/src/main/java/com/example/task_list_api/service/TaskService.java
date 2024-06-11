@@ -1,4 +1,4 @@
-package com.example.task_list_api.service.service;
+package com.example.task_list_api.service;
 
 import java.util.List;
 

@@ -9,19 +9,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.task_list_api.dto.TaskDto;
 import com.example.task_list_api.entities.Task;
 import com.example.task_list_api.mapper.TaskMapper;
 import com.example.task_list_api.response.TaskResponse;
-import com.example.task_list_api.service.service.TaskService;
+import com.example.task_list_api.service.TaskService;
 
 import lombok.RequiredArgsConstructor;
 
+@RestController
 @RequiredArgsConstructor
+@RequestMapping("/tasks")
 public class TaskController {
  
     private final TaskService taskService;
+
     private final TaskMapper taskMapper;
 
     @GetMapping
